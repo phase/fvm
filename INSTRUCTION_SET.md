@@ -18,6 +18,6 @@ Thr instruction set of the Flower Virtual Machine.
 3 : gto <num>             :: Go to the number of the program counter
 4 : add <reg> <reg> <reg> :: Add value in register one to value in register two and put it in register three
 5 : sub <reg> <reg> <reg> :: Subtract value in register one from value in register two and put it in register three
-6 : div <reg> <reg> <reg> :: Divide "
-7 : mul <reg> <reg> <reg> :: Multiply "
+6 : mul <reg> <reg> <reg> :: Multiply "
+7 : div <reg> <reg> <reg> :: Divide "
 ```
