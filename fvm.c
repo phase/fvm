@@ -38,5 +38,9 @@ void eval(){
       break;
     case 3: /*add*/
       regs[reg3] = regs[reg1] + regs[reg2];
+      break;
+    case 4: /*sub*/
+      regs[reg3] = regs[reg1] - regs[reg2];
+      break;
   }
 }
