@@ -15,7 +15,9 @@ Thr instruction set of the Flower Virtual Machine.
 0 : stp                   :: Stops the program
 1 : ldi <reg> <num>       :: Load number to register
 2 : rst <reg>             :: Reset register to zero
-3 : add <reg> <reg> <reg> :: Add value in register one to value in register two and put it in register three
-4 : sub <reg> <reg> <reg> :: Subtract value in register one from value in register two and put it in register three
-5 : gto <num>             :: Go to the number of the program counter
+3 : gto <num>             :: Go to the number of the program counter
+4 : add <reg> <reg> <reg> :: Add value in register one to value in register two and put it in register three
+5 : sub <reg> <reg> <reg> :: Subtract value in register one from value in register two and put it in register three
+6 : div <reg> <reg> <reg> :: Divide "
+7 : mul <reg> <reg> <reg> :: Multiply "
 ```
