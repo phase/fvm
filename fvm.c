@@ -36,14 +36,20 @@ void eval(){
     case 2: /*rst*/
       regs[reg1] = 0;
       break;
-    case 3: /*add*/
+    case 3: /*gto*/
+      pc = imm;
+      break;
+    case 4: /*add*/
       regs[reg3] = regs[reg1] + regs[reg2];
       break;
-    case 4: /*sub*/
+    case 5: /*sub*/
       regs[reg3] = regs[reg1] - regs[reg2];
       break;
-    case 5: /*gto*/
-      pc = imm;
+    case 6: /*mul*/
+      regs[reg3] = regs[reg1] * regs[reg2];
+      break;
+    case 7: /*div*/
+      regs[reg3] = regs[reg1] / regs[reg2];
       break;
     default:
       printf("Error: Instruction %n not found!", instruction);
