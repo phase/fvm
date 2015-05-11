@@ -42,6 +42,12 @@ void eval(){
     case 4: /*sub*/
       regs[reg3] = regs[reg1] - regs[reg2];
       break;
+    case 5: /*gto*/
+      pc = imm;
+      break;
+    default:
+      printf("Error: Instruction %n not found!", instruction);
+      exit(1);
   }
 }
 
