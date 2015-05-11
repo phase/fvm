@@ -44,3 +44,22 @@ void eval(){
       break;
   }
 }
+
+int prog[] = { 0x1064, 0x11C8, 0x2201, 0x0000 };
+
+int fetch(){
+  return prog[pc++];
+}
+
+void run(){
+  while(running){
+    int i = fetch();
+    decode(i);
+    eval();
+  }
+}
+
+int main(int argc, const char *argv[]){
+  run();
+  return 0;
+}
