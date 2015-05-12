@@ -1,6 +1,18 @@
 # FVM Instruction Set
 Thr instruction set of the Flower Virtual Machine.
 
+##Hex Formatting
+The FVM reads each 6-bit set of numbers as an instruction. The instructions are listed below with their specified numbers. Here's the formatting for the numbers:
+```fvm
+00 0 0 0 00
+|  | | | |- Data
+|  | | |--- Register/Data
+|  | |----- Register/Data
+|  |------- Register/Data
+|---------- Instruction
+```
+If there aren't enough argument sto fill 6 bits, fill the remaining bits with zeros.
+
 ###Notation
 * Registers begin with `r`: `r0`
 * Scalar values begin with `#`: `#100`
