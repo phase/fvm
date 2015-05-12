@@ -117,6 +117,7 @@ void run(){
 }
 
 int main(int argc, const char *argv[]){
+  running = 1;
   run();
   return 0;
 }
