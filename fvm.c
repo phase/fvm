@@ -16,7 +16,7 @@ int n4 = 0;
 int l2 = 0;
 
 void decode(int in){
-  instruction = (in & 0xFF0000) >> 20;
+  instruction = (in & 0xFF0000) >> 16;
   n1 = (in & 0xF000) >> 12;
   n2 = (in & 0xF00) >>  8;
   n3 = (in & 0xF0) >>  4;
