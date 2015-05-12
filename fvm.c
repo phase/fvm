@@ -93,7 +93,7 @@ void eval(){
   }
 }
 
-int prog[] = { 0x010640, 0x011C80, 0x022010, 0x000000 };
+int prog[4096];
 
 int fetch(){
   return prog[pc++];
@@ -117,6 +117,28 @@ void run(){
 }
 
 int main(int argc, const char *argv[]){
+  if(argc < 1){
+    printf("You need to specify a file!");
+    exit(EXIT_FAILURE);
+  }
+  int chars[6];
+  int charCount = 0;
+  FILE *f;
+  f = fopen(argv[1], "r");
+  int i = 0, j = 0;
+  while((ch = fgetc(f)) != EOF){
+    if(ch == '\n') continue;
+    chars[i] = (char)ch;
+    i++;
+    if(i <= 6){
+      i = 0;
+      int k = 0;
+      sscanf(chars, "%X", &k);
+      prog[j++] = k;
+      memset(&chars[0], 0, sizeof(chars));
+    }
+  }
+  
   running = 1;
   run();
   return 0;
