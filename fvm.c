@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#define NUM_REGS 4
+#define NUM_REGS 16
 unsigned regs[NUM_REGS];
-unsigned memory[4096];
+unsigned memory[0xFF];
 
 /* Program Counter */
 int pc = 0;
