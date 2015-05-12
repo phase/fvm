@@ -100,10 +100,19 @@ int fetch(){
 
 void run(){
   while(running){
+    showRegs();
     int i = fetch();
     decode(i);
     eval();
   }
+}
+
+void showRegs(){
+  int i;
+  printf( "regs = " );
+  for( i=0; i<NUM_REGS; i++ )
+    printf( "%04X ", regs[ i ] );
+  printf( "\n" );
 }
 
 int main(int argc, const char *argv[]){
