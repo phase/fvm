@@ -2,4 +2,4 @@ CC=gcc
 CFLAGS=-I.
 
 fvm: fvm.o
-     $(CC) -o fvm fvm.o $(CFLAGS)
+	$(CC) -o fvm fvm.o $(CFLAGS)
