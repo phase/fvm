@@ -81,11 +81,13 @@ void eval(){
       regs[n3] = regs[n1] >> regs[n2];
       break;
     case 15: /*str*/
+      memory[l3] = regs[n1];
       break;
     case 16: /*get*/
+      regs[n3] = memory[l4];
       break;
     default:
-      printf("Error: Instruction %n not found!", instruction);
+      printf("Error: Instruction %X not found!", instruction);
       exit(1);
   }
 }
