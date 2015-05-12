@@ -11,10 +11,21 @@ The FVM reads each 6-bit set of numbers as an instruction. The instructions are 
 |  |------- Register/Data
 |---------- Instruction
 ```
-If there aren't enough argument sto fill 6 bits, fill the remaining bits with zeros.
+If there aren't enough arguments to fill 6 bits, fill the remaining bits with zeros.
 
 ###Variables
 *This has to do with the inside architecture of the FVM. This is not needed to produce FVM bytecode or FVM hex code.*
+
+Registers and Memory have their own arrays.
+```c
+#define NUM_REGS 16
+unsigned regs[NUM_REGS];
+unsigned memory[0xFF];
+```
+There is also a program counter to keep track of where the program is.
+```c
+int pc = 0;
+```
 
 There are many different variables in the FVM, each corresponding to a different number in each instruction.
 ```fvm
@@ -25,6 +36,11 @@ There are many different variables in the FVM, each corresponding to a different
      |  -l3-
      -l4-
      - w ------
+```
+These variables are used within the evaluation of each instruction.
+```c   
+case 3: /*gto*/
+  pc = l4;
 ```
 
 ##FVM Bytecode
