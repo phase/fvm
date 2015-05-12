@@ -1,5 +1,5 @@
 CC=gcc
 
 fvm: fvm.o
-	$(CC) -o fvm fvm.o -std=c99 -I
+	$(CC) -std=c99 -o fvm fvm.o -I.
 	./fvm examples/example.pot
