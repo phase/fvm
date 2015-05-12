@@ -1,6 +1,5 @@
 CC=gcc
-CFLAGS=-I.
 
 fvm: fvm.o
-	$(CC) -o fvm fvm.o $(CFLAGS)
+	$(CC) -o fvm fvm.o -std=c99 -I
 	./fvm examples/example.pot
