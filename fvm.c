@@ -121,6 +121,7 @@ int main(int argc, const char *argv[]){
     printf("You need to specify a file!");
     exit(EXIT_FAILURE);
   }
+  char ch;
   int chars[6];
   int charCount = 0;
   FILE *f;
