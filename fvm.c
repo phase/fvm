@@ -122,7 +122,7 @@ int main(int argc, const char *argv[]){
     exit(EXIT_FAILURE);
   }
   char ch;
-  int chars[6];
+  char chars[6];
   int charCount = 0;
   FILE *f;
   f = fopen(argv[1], "r");
@@ -133,8 +133,7 @@ int main(int argc, const char *argv[]){
     i++;
     if(i <= 6){
       i = 0;
-      int k = 0;
-      sscanf(chars, "%X", &k);
+      int k = (chars[2]<<24)|(chars[3]<<16)|(chars[4]<<8)|chars[5];
       prog[j++] = k;
       memset(&chars[0], 0, sizeof(chars));
     }
