@@ -27,7 +27,7 @@ There is also a program counter to keep track of where the program is.
 int pc = 0;
 ```
 
-There are many different variables in the FVM, each corresponding to a different number in each instruction.
+Each hex instruction has different variables for different parts of it.
 ```fvm
 0 0  0  0  0  0
 | |  |  |  |  |
@@ -65,10 +65,12 @@ Number | Syntax | Hex Example | Description
 5 | `sub <reg> <reg> <reg>`   | 051230 | Subtract value in register one from value in register two and put it in register three
 6 | `mul <reg> <reg> <reg>`   | 061230 | Multiply "
 7 | `div <reg> <reg> <reg>`   | 071230 | Divide "
-8 | `and <reg> <reg> <reg>`   | 081230 | AND the first two registers and store it in the second register
-9 | `or <reg> <reg> <reg>`    | 091230 | OR the first two registers and store it in the second register
-10 | `xor <reg> <reg> <reg>`  | 0A1230 | XOR the first two registers and store it in the second register
-11 | `shl <reg> <reg> <reg>`  | 0B1230 | Shift Left the first register by the second register's value
-12 | `shr <reg> <reg> <reg>`  | 0C1230 | Shift Right the first register by the second register's value
-13 | `str <reg> <mem>`        | 0D3FF0 | Store the value in the register in the memory address
-14 | `get <mem> <reg>`        | 0EFF20 | Get the value in the memory address and put it in the register
+8 | `mod <reg> <reg> <reg>`   | 081230 | Modulus "
+9 | `and <reg> <reg> <reg>`   | 091230 | AND the first two registers and store it in the second register
+10 | `or <reg> <reg> <reg>`   | 0A1230 | OR the first two registers and store it in the second register
+11 | `xor <reg> <reg> <reg>`  | 0B1230 | XOR the first two registers and store it in the second register
+12 | `not <reg> <reg> `       | 0C1100 | NOT the first register and store it in the second register
+13 | `shl <reg> <reg> <reg>`  | 0D1230 | Shift Left the first register by the second register's value
+14 | `shr <reg> <reg> <reg>`  | 0E1230 | Shift Right the first register by the second register's value
+15 | `str <reg> <mem>`        | 0F3FF0 | Store the value in the register in the memory address
+16 | `get <mem> <reg>`        | 10FF20 | Get the value in the memory address and put it in the register
