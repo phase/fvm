@@ -15,7 +15,7 @@ int reg3 = 0;
 int imm = 0;
 
 void decode(int in){
-  instruction = (in & 0xF000) >> 12;
+  instruction = (in & 0xFF000) >> 16;
   reg1 = (in & 0xF00) >>  8;
   reg2 = (in & 0xF0) >>  4;
   reg3 = (in & 0xF);
