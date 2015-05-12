@@ -131,6 +131,7 @@ int main(int argc, const char *argv[]){
   int i = 0, j = 0;
   while((ch = fgetc(f)) != EOF){
     if(ch == '\n') continue;
+    printf("%c", ch);
     chars[i] = (char)ch;
     i++;
     if(i <= 6){
@@ -150,7 +151,8 @@ int main(int argc, const char *argv[]){
   
   int l;
   for(l = 0; l < PROG_LENGTH; l++){
-    printf("%X ", prog[l]);
+    printf("%X", prog[l]);
+    if(prog[l] == 0) break;
   }
   printf("\n");
 
