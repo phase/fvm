@@ -138,7 +138,12 @@ int main(int argc, const char *argv[]){
       memset(&chars[0], 0, sizeof(chars));
     }
   }
-  
+
+  for(int l = 0; l < prog.length; l++){
+    printf("%X ", prog[l]);
+  }
+  printf("\n");
+
   running = 1;
   run();
   return 0;
