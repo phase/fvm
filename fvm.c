@@ -15,6 +15,7 @@ int n3 = 0;
 int n4 = 0;
 int l2 = 0;
 int l3 = 0;
+int l4 = 0;
 int w = 0;
 
 void decode(int in){
@@ -25,6 +26,7 @@ void decode(int in){
   n4 = (in & 0xF);
   l2 = (in & 0xFF);
   l3 = (in & 0xFF0) >> 4;
+  l4 = (in & 0xFF00) >> 8;
   w = (in & 0x00FFFF);
 }
 
@@ -37,13 +39,13 @@ void eval(){
       running = 0;
       break;
     case 1: /*ldi*/
-      regs[n1] = l2;
+      regs[n1] = l3;
       break;
     case 2: /*rst*/
       regs[n1] = 0;
       break;
     case 3: /*gto*/
-      pc = l2;
+      pc = l4;
       break;
     case 4: /*add*/
       regs[n3] = regs[n1] + regs[n2];
