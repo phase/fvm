@@ -12,14 +12,16 @@ int instruction = 0;
 int n1 = 0;
 int n2 = 0;
 int n3 = 0;
-int imm = 0;
+int n4 = 0;
+int l2 = 0;
 
 void decode(int in){
-  instruction = (in & 0xFF000) >> 16;
-  n1 = (in & 0xF00) >>  8;
-  n2 = (in & 0xF0) >>  4;
-  n3 = (in & 0xF);
-  imm = (in & 0xFF);
+  instruction = (in & 0xFF0000) >> 20;
+  n1 = (in & 0xF000) >> 12;
+  n2 = (in & 0xF00) >>  8;
+  n3 = (in & 0xF0) >>  4;
+  n4 = (in & 0xF);
+  l2 = (in & 0xFF);
 }
 
 /* Is the VM running? */
@@ -31,13 +33,13 @@ void eval(){
       running = 0;
       break;
     case 1: /*ldi*/
-      regs[n1] = imm;
+      regs[n1] = l2;
       break;
     case 2: /*rst*/
       regs[n1] = 0;
       break;
     case 3: /*gto*/
-      pc = imm;
+      pc = l2;
       break;
     case 4: /*add*/
       regs[n3] = regs[n1] + regs[n2];
@@ -57,7 +59,7 @@ void eval(){
   }
 }
 
-int prog[] = { 0x1064, 0x11C8, 0x2201, 0x0000 };
+int prog[] = { 0x010640, 0x011C80, 0x022010, 0x000000 };
 
 int fetch(){
   return prog[pc++];
