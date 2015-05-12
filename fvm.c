@@ -132,6 +132,7 @@ int main(int argc, const char *argv[]){
   while((ch = fgetc(f)) != EOF){
     if(ch == '\n') continue;
     printf("%c", ch);
+    printf("\n\n");
     chars[i] = (char)ch;
     i++;
     if(i <= 6){
@@ -139,11 +140,12 @@ int main(int argc, const char *argv[]){
       int hex[6];
       int m;
       for(m = 0; m < 6; m++){
+        printf("%c", chars[1]);
         char buffer[1];
         buffer[0] = chars[m];
         hex[m] = (int) strtol(buffer, NULL, 16);
       }
-      int k = (hex[2]<<24)|(hex[3]<<16)|(hex[4]<<8)|hex[5];
+      int k = (hex[0]<<40)|(hex[1]<<32)|(hex[2]<<24)|(hex[3]<<16)|(hex[4]<<8)|hex[5];
       prog[j++] = k;
       memset(&chars[0], 0, sizeof(chars));
     }
