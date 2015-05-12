@@ -89,6 +89,12 @@ void eval(){
     case 16: /*get*/
       regs[n3] = memory[l4];
       break;
+    case 0x11: /*red*/
+      
+      break;
+    case 0x12: /*prt*/
+      printf("%c", regs[n1]);
+      break;
     default:
       printf("Error: Instruction %X not found!", instruction);
       exit(EXIT_FAILURE);
