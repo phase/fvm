@@ -130,7 +130,7 @@ int main(int argc, const char *argv[]){
   char buffer[7];
   buffer[6] = '\0';
   while((ch = fgetc(f)) != EOF){
-    if(ch == '\n') continue;
+    if(ch == '\n' || ch == ' ') continue;
     buffer[i++] = ch;
     if(i == 6) {
       i = 0;
