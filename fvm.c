@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define NUM_REGS 16
 #define PROG_LENGTH 4096
