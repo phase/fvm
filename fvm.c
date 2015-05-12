@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #define NUM_REGS 16
+#define PROG_LENGTH 4096
 unsigned regs[NUM_REGS];
 unsigned memory[0xFF];
 
@@ -93,7 +94,7 @@ void eval(){
   }
 }
 
-int prog[4096];
+int prog[PROG_LENGTH];
 
 int fetch(){
   return prog[pc++];
@@ -145,7 +146,7 @@ int main(int argc, const char *argv[]){
   }
   
   int l;
-  for(l = 0; l < prog.length; l++){
+  for(l = 0; l < PROG_LENGTH; l++){
     printf("%X ", prog[l]);
   }
   printf("\n");
