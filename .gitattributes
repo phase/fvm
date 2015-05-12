@@ -1,2 +1,2 @@
-.fvm linguist-language=Assembly
-.pot linguist-language=Assembly
+*.fvm linguist-language=Assembly
+*.pot linguist-language=Assembly
