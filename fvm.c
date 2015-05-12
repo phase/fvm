@@ -59,20 +59,30 @@ void eval(){
     case 7: /*div*/
       regs[n3] = regs[n1] / regs[n2];
       break;
-    case 8: /*and*/
+    case 8: /*mod*/
+      regs[n3] = regs[n1] % regs[n2];
+      break;
+    case 9: /*and*/
       regs[n3] = regs[n1] & regs[n2];
       break;
-    case 9: /*or*/
+    case 10: /*or*/
       regs[n3] = regs[n1] | regs[n2];
       break;
-    case 10: /*xor*/
+    case 11: /*xor*/
       regs[n3] = regs[n1] ^ regs[n2];
       break;
-    case 11: /*shl*/
+    case 12: /*not*/
+      reg[n2] = !reg[n1];
+      break;
+    case 13: /*shl*/
       regs[n3] = regs[n1] << regs[n2];
       break;
-    case 12: /*shr*/
+    case 14: /*shr*/
       regs[n3] = regs[n1] >> regs[n2];
+      break;
+    case 15: /*str*/
+      break;
+    case 16: /*get*/
       break;
     default:
       printf("Error: Instruction %n not found!", instruction);
