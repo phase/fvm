@@ -123,37 +123,24 @@ int main(int argc, const char *argv[]){
     printf("You need to specify a file!");
     exit(EXIT_FAILURE);
   }
-  char ch;
-  char chars[6];
-  int charCount = 0;
   FILE *f;
   f = fopen(argv[1], "r");
+  char ch;
   int i = 0, j = 0;
+  char buffer[7];
+  buffer[6] = '\0';
   while((ch = fgetc(f)) != EOF){
     if(ch == '\n') continue;
-    printf("r%X", ch);
-    printf("\n");
-    chars[i] = (char)ch;
-    i++;
-    if(i <= 6){
+    buffer[i++] = ch;
+    if(i == 6) {
       i = 0;
-      int hex[6];
-      int m;
-      for(m = 0; m < 6; m++){
-        printf("\ns%X", chars[m]);
-        char buffer[1];
-        buffer[0] = chars[m];
-        hex[m] = (int) strtol(buffer, NULL, 16);
-      }
-      unsigned int k = (hex[0]<<40)|(hex[1]<<32)|(hex[2]<<24)|(hex[3]<<16)|(hex[4]<<8)|hex[5];
-      prog[j++] = k;
-      memset(&chars[0], 0, sizeof(chars));
+      prog[j++] = (int)strtol(buffer, NULL, 16);
     }
   }
-  
+
   int l;
   for(l = 0; l < PROG_LENGTH; l++){
-    printf("p%X", prog[l]);
+    printf("%X", prog[l]);
     if(prog[l] == 0) break;
   }
   printf("\n");
