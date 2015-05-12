@@ -72,7 +72,7 @@ void eval(){
       regs[n3] = regs[n1] ^ regs[n2];
       break;
     case 12: /*not*/
-      reg[n2] = !reg[n1];
+      regs[n2] = !regs[n1];
       break;
     case 13: /*shl*/
       regs[n3] = regs[n1] << regs[n2];
