@@ -140,7 +140,7 @@ int main(int argc, const char *argv[]){
       int hex[6];
       int m;
       for(m = 0; m < 6; m++){
-        printf("s%X", chars[m]);
+        printf("\ns%X", chars[m]);
         char buffer[1];
         buffer[0] = chars[m];
         hex[m] = (int) strtol(buffer, NULL, 16);
