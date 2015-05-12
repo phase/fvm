@@ -102,7 +102,7 @@ int fetch(){
 void showRegs(){
   int i;
   printf( "regs = " );
-  for( i=0; i<NUM_REGS; i++ )
+  for(i=0; i<NUM_REGS; i++ )
     printf( "%04X ", regs[ i ] );
   printf( "\n" );
 }
@@ -134,7 +134,8 @@ int main(int argc, const char *argv[]){
     if(i <= 6){
       i = 0;
       int hex[6];
-      for(int m = 0; m < 6; m++){
+      int m;
+      for(m = 0; m < 6; m++){
         hex[m] = strtol(chars[1], NULL, 16);
       }
       int k = (hex[2]<<24)|(hex[3]<<16)|(hex[4]<<8)|hex[5];
@@ -142,8 +143,9 @@ int main(int argc, const char *argv[]){
       memset(&chars[0], 0, sizeof(chars));
     }
   }
-
-  for(int l = 0; l < prog.length; l++){
+  
+  int l;
+  for(l = 0; l < prog.length; l++){
     printf("%X ", prog[l]);
   }
   printf("\n");
