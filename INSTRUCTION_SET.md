@@ -33,9 +33,9 @@ There are many different variables in the FVM, each corresponding to a different
 | |  |  |  |  |
 -i-  n1 n2 n3 n4
      |  |  -l2-
-     |  -l3-
-     -l4-
-     - w ------
+     |  -l3- |
+     -l4- |  |
+     ---- w ----
 ```
 These variables are used within the evaluation of each instruction.
 ```c   
