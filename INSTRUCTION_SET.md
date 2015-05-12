@@ -13,6 +13,21 @@ The FVM reads each 6-bit set of numbers as an instruction. The instructions are 
 ```
 If there aren't enough argument sto fill 6 bits, fill the remaining bits with zeros.
 
+###Variables
+*This has to do with the inside architecture of the FVM. This is not needed to produce FVM bytecode or FVM hex code.*
+
+There are many different variables in the FVM, each corresponding to a different number in each instruction.
+```fvm
+0 0  0  0  0  0
+| |  |  |  |  |
+-i-  n1 n2 n3 n4
+     |  |  -l2-
+     |  -l3-
+     -l4-
+     - w ------
+```
+
+##FVM Bytecode
 ###Notation
 * Registers begin with `r`: `r0`
 * Scalar values begin with `#`: `#100`
