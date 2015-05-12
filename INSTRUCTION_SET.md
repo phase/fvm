@@ -55,7 +55,7 @@ case 3: /*gto*/
 * `num` : Number : 2 bits
 * `mem` : Memory Address : 2 bits
 
-Number | Syntax | Hex Example | Description
+Number (in hex)| Syntax | Hex Example | Description
 -------|--------|-------------|------------
 0 | `stp`                     | 000000 | Stops the program
 1 | `ldi <reg> <num>`         | 010640 | Load number to register
@@ -67,10 +67,12 @@ Number | Syntax | Hex Example | Description
 7 | `div <reg> <reg> <reg>`   | 071230 | Divide "
 8 | `mod <reg> <reg> <reg>`   | 081230 | Modulus "
 9 | `and <reg> <reg> <reg>`   | 091230 | AND the first two registers and store it in the second register
-10 | `or <reg> <reg> <reg>`   | 0A1230 | OR the first two registers and store it in the second register
-11 | `xor <reg> <reg> <reg>`  | 0B1230 | XOR the first two registers and store it in the second register
-12 | `not <reg> <reg> `       | 0C1100 | NOT the first register and store it in the second register
-13 | `shl <reg> <reg> <reg>`  | 0D1230 | Shift Left the first register by the second register's value
-14 | `shr <reg> <reg> <reg>`  | 0E1230 | Shift Right the first register by the second register's value
-15 | `str <reg> <mem>`        | 0F3FF0 | Store the value in the register in the memory address
-16 | `get <mem> <reg>`        | 10FF20 | Get the value in the memory address and put it in the register
+A | `or <reg> <reg> <reg>`    | 0A1230 | OR the first two registers and store it in the second register
+B | `xor <reg> <reg> <reg>`   | 0B1230 | XOR the first two registers and store it in the second register
+C | `not <reg> <reg> `        | 0C1100 | NOT the first register and store it in the second register
+D | `shl <reg> <reg> <reg>`   | 0D1230 | Shift Left the first register by the second register's value
+E | `shr <reg> <reg> <reg>`   | 0E1230 | Shift Right the first register by the second register's value
+F | `str <reg> <mem>`         | 0F3FF0 | Store the value in the register in the memory address
+10 | `get <mem> <reg>`        | 10FF20 | Get the value in the memory address and put it in the register
+11 | `red <reg>`              | 11A000 | Read an input from the console and set it to the register
+12 | `prt <reg>`              | 12A000 | Prints char value of the register
