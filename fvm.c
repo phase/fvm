@@ -14,6 +14,7 @@ int n2 = 0;
 int n3 = 0;
 int n4 = 0;
 int l2 = 0;
+int l3 = 0;
 int w = 0;
 
 void decode(int in){
@@ -23,6 +24,7 @@ void decode(int in){
   n3 = (in & 0xF0) >>  4;
   n4 = (in & 0xF);
   l2 = (in & 0xFF);
+  l3 = (in & 0xFF0) >> 4;
   w = (in & 0x00FFFF);
 }
 
