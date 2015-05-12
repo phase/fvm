@@ -133,7 +133,11 @@ int main(int argc, const char *argv[]){
     i++;
     if(i <= 6){
       i = 0;
-      int k = (chars[2]<<24)|(chars[3]<<16)|(chars[4]<<8)|chars[5];
+      int hex[6];
+      for(int m = 0; m < 6; m++){
+        hex[m] = strtol(chars[1], NULL, 16);
+      }
+      int k = (hex[2]<<24)|(hex[3]<<16)|(hex[4]<<8)|hex[5];
       prog[j++] = k;
       memset(&chars[0], 0, sizeof(chars));
     }
