@@ -95,7 +95,7 @@ void eval(){
   }
 }
 
-int prog[PROG_LENGTH];
+unsigned int prog[PROG_LENGTH];
 
 int fetch(){
   return prog[pc++];
@@ -145,7 +145,7 @@ int main(int argc, const char *argv[]){
         buffer[0] = chars[m];
         hex[m] = (int) strtol(buffer, NULL, 16);
       }
-      int k = (hex[0]<<40)|(hex[1]<<32)|(hex[2]<<24)|(hex[3]<<16)|(hex[4]<<8)|hex[5];
+      unsigned int k = (hex[0]<<40)|(hex[1]<<32)|(hex[2]<<24)|(hex[3]<<16)|(hex[4]<<8)|hex[5];
       prog[j++] = k;
       memset(&chars[0], 0, sizeof(chars));
     }
