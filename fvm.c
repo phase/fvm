@@ -98,6 +98,14 @@ int fetch(){
   return prog[pc++];
 }
 
+void showRegs(){
+  int i;
+  printf( "regs = " );
+  for( i=0; i<NUM_REGS; i++ )
+    printf( "%04X ", regs[ i ] );
+  printf( "\n" );
+}
+
 void run(){
   while(running){
     showRegs();
@@ -105,14 +113,6 @@ void run(){
     decode(i);
     eval();
   }
-}
-
-void showRegs(){
-  int i;
-  printf( "regs = " );
-  for( i=0; i<NUM_REGS; i++ )
-    printf( "%04X ", regs[ i ] );
-  printf( "\n" );
 }
 
 int main(int argc, const char *argv[]){
