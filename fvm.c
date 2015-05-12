@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define NUM_REGS 16
 unsigned regs[NUM_REGS];
@@ -88,7 +89,7 @@ void eval(){
       break;
     default:
       printf("Error: Instruction %X not found!", instruction);
-      exit(1);
+      exit(EXIT_FAILURE);
   }
 }
 
