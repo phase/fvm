@@ -19,6 +19,8 @@ int n4 = 0;
 int l2 = 0;
 int l3 = 0;
 int l4 = 0;
+int t1 = 0;
+int t2 = 0;
 int w = 0;
 
 void decode(int in){
@@ -30,6 +32,8 @@ void decode(int in){
   l2 = (in & 0xFF);
   l3 = (in & 0xFF0) >> 4;
   l4 = (in & 0xFF00) >> 8;
+  t1 = (in & 0xFFF);
+  t2 = (in & 0xFFF0) >> 4;
   w = (in & 0x00FFFF);
 }
 
@@ -112,9 +116,9 @@ int fetch(){
 
 void showRegs(){
   int i;
-  printf( "regs = " );
-  for(i=0; i<NUM_REGS; i++ )
-    printf( "%04X ", regs[ i ] );
+  printf("regs = ");
+  for(i = 0; i < NUM_REGS; i++)
+    printf("%04X ", regs[i]);
   printf( "\n" );
 }
 
@@ -149,7 +153,7 @@ int main(int argc, const char *argv[]){
 
   int l;
   for(l = 0; l < PROG_LENGTH; l++){
-    printf("%X", prog[l]);
+    printf("%X\n", prog[l]);
     if(prog[l] == 0) break;
   }
   printf("\n");
