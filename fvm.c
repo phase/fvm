@@ -105,6 +105,9 @@ void eval(){
     case 19: /*prc*/
       printf("%c", regs[n1]);
       break;
+    case 20: /*trn*/
+      regs[n2] = regs[n1];
+      break;
     default:
       printf("Error: Instruction %X not found!", instruction);
       exit(EXIT_FAILURE);
