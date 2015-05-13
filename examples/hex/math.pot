@@ -1,6 +1,6 @@
-010640
-011340
-040130
-012540
-0A2340
-124000
+010640 ; Load 64 into register 0
+011340 ; Load 34 into register 0
+040130 ; Add register 0 and register 1 and store it in register 3
+012540 ; Load 54 into register 2
+0A2340 ; OR register 2 and register 3 and store it register 4
+124000 ; Print register 4
