@@ -89,13 +89,13 @@ void eval(){
     case 16: /*get*/
       regs[n3] = memory[l4];
       break;
-    case 0x11: /*red*/
+    case 17: /*red*/
       scanf("%d", &regs[n1]);
       break;
-    case 0x12: /*prt*/
+    case 18: /*prt*/
       printf("%d", regs[n1]);
       break;
-    case 0x13: /*prc*/
+    case 19: /*prc*/
       printf("%c", regs[n1]);
       break;
     default:
