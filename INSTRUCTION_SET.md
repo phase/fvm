@@ -75,4 +75,5 @@ E | `shr <reg> <reg> <reg>`   | 0E1230 | Shift Right the first register by the s
 F | `str <reg> <mem>`         | 0F3FF0 | Store the value in the register in the memory address
 10 | `get <mem> <reg>`        | 10FF20 | Get the value in the memory address and put it in the register
 11 | `red <reg>`              | 11A000 | Read an input from the console and set it to the register
-12 | `prt <reg>`              | 12A000 | Prints char value of the register
+12 | `prt <reg>`              | 12A000 | Prints numeric value of the register
+13 | `prc <reg>`              | 13A000 | Prints char value of the register
