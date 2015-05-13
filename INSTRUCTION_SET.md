@@ -77,3 +77,4 @@ F | `str <reg> <mem>`         | 0F3FF0 | Store the value in the register in the 
 11 | `red <reg>`              | 11A000 | Read an input from the console and set it to the register
 12 | `prt <reg>`              | 12A000 | Prints numeric value of the register
 13 | `prc <reg>`              | 13A000 | Prints char value of the register
+14 | `trn <reg> <reg>`         | 14AB00 | Transfers the value of the first register to the second register
