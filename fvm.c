@@ -90,9 +90,12 @@ void eval(){
       regs[n3] = memory[l4];
       break;
     case 0x11: /*red*/
-      
+      scanf("%d", &regs[n1]);
       break;
     case 0x12: /*prt*/
+      printf("%d", regs[n1]);
+      break;
+    case 0x13: /*prc*/
       printf("%c", regs[n1]);
       break;
     default:
