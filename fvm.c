@@ -6,9 +6,12 @@
 #define PROG_LENGTH 4096
 unsigned regs[NUM_REGS];
 unsigned memory[0xFF];
+unsigned int prog[PROG_LENGTH];
 
 /* Program Counter */
 int pc = 0;
+
+int comment = 0;
 
 /* Fields */
 int instruction = 0;
@@ -108,8 +111,6 @@ void eval(){
   }
 }
 
-unsigned int prog[PROG_LENGTH];
-
 int fetch(){
   return prog[pc++];
 }
@@ -143,7 +144,11 @@ int main(int argc, const char *argv[]){
   char buffer[7];
   buffer[6] = '\0';
   while((ch = fgetc(f)) != EOF){
-    if(ch == '\n' || ch == ' ') continue;
+    if(ch == '\n' || ch == ' ' || comment != 0) continue;
+    if(ch == ';'){
+      comment = !comment;
+      continue;
+    }
     buffer[i++] = ch;
     if(i == 6) {
       i = 0;
