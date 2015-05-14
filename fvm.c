@@ -147,13 +147,13 @@ int main(int argc, const char *argv[]){
   char buffer[7];
   buffer[6] = '\0';
   while((ch = fgetc(f)) != EOF){
+    if(ch == '\n'){
+      comment = 0;
+      continue;
+    }
     if(ch == ' ' || comment != 0) continue;
     if(ch == ';'){
       comment = !comment;
-      continue;
-    }
-    if(ch == '\n'){
-      comment = 0;
       continue;
     }
     buffer[i++] = ch;
