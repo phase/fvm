@@ -53,7 +53,7 @@ case 3: /*gto*/
 ###Instructions
 * `reg` : Register : 1 bit
 * `num` : Number : 2 bits
-* `mem` : Memory Address : 2 bits
+* `mem` : Memory Address : 3 bits
 
 Number (in hex)| Syntax | Hex Example | Description
 -------|--------|-------------|------------
@@ -72,8 +72,8 @@ B | `xor <reg> <reg> <reg>`   | 0B1230 | XOR the first two registers and store i
 C | `not <reg> <reg> `        | 0C1100 | NOT the first register and store it in the second register
 D | `shl <reg> <reg> <reg>`   | 0D1230 | Shift Left the first register by the second register's value
 E | `shr <reg> <reg> <reg>`   | 0E1230 | Shift Right the first register by the second register's value
-F | `str <reg> <mem>`         | 0F3FF0 | Store the value in the register in the memory address
-10 | `get <mem> <reg>`        | 10FF20 | Get the value in the memory address and put it in the register
+F | `str <reg> <mem>`         | 0F3FFE | Store the value in the register in the memory address
+10 | `get <mem> <reg>`        | 10FFE2 | Get the value in the memory address and put it in the register
 11 | `red <reg>`              | 11A000 | Read an input from the console and set it to the register
 12 | `prt <reg>`              | 12A000 | Prints numeric value of the register
 13 | `prc <reg>`              | 13A000 | Prints char value of the register
