@@ -5,7 +5,7 @@
 #define NUM_REGS 16
 #define PROG_LENGTH 4096
 unsigned regs[NUM_REGS];
-unsigned memory[0xFF];
+unsigned memory[0xFFF];
 unsigned int prog[PROG_LENGTH];
 
 /* Program Counter */
@@ -91,10 +91,10 @@ void eval(){
       regs[n3] = regs[n1] >> regs[n2];
       break;
     case 15: /*str*/
-      memory[l3] = regs[n1];
+      memory[t1] = regs[n1];
       break;
     case 16: /*get*/
-      regs[n3] = memory[l4];
+      regs[n3] = memory[t2];
       break;
     case 17: /*red*/
       scanf("%d", &regs[n1]);
