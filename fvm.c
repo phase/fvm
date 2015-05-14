@@ -152,7 +152,7 @@ int main(int argc, const char *argv[]){
       comment = !comment;
       continue;
     }
-    if(ch == `\n`){
+    if(ch == '\n'){
       comment = 0;
       continue;
     }
