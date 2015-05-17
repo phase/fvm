@@ -1,4 +1,4 @@
-# Flower Virtual Machine [![Build Status](https://travis-ci.org/flower/fvm.svg)](https://travis-ci.org/flower/fvm)
+# Flower Virtual Machine [![Latest Release](https://img.shields.io/github/release/flower/fvm.svg?label=latest%20release)](https://github.com/flower/fvm/releases/latest) [![Build Status](https://travis-ci.org/flower/fvm.svg)](https://travis-ci.org/flower/fvm)
 The FVM is a virtual machine written in C that hopes to be as strong as VMs like the JVM & Parrot.
 
 ## Bytecode
