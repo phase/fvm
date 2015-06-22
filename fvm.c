@@ -116,6 +116,9 @@ void eval(){
     case 21: /*bnz*/
       if (regs[n1] != 0) pc = m2;
       break;
+    case 22: /*biz*/
+      if (regs[n1] == 0) pc = m2;
+      break;
     default:
       printf("Error: Instruction %X not found!", instruction);
       exit(EXIT_FAILURE);
