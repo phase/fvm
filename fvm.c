@@ -25,7 +25,10 @@ int l4 = 0;
 int t1 = 0;
 int t2 = 0;
 int w = 0;
+int m1 = 0;
+int m2 = 0;
 
+/* Gets all the information out of the instruction */
 void decode(int in){
   instruction = (in & 0xFF0000) >> 16;
   n1 = (in & 0xF000) >> 12;
@@ -38,6 +41,8 @@ void decode(int in){
   t1 = (in & 0xFFF);
   t2 = (in & 0xFFF0) >> 4;
   w = (in & 0x00FFFF);
+  m1 = (in & 0xFFF0) >> 4;
+  m2 = (in & 0xFFF);
 }
 
 /* Is the VM running? */
@@ -107,6 +112,9 @@ void eval(){
       break;
     case 20: /*trn*/
       regs[n2] = regs[n1];
+      break;
+    case 21: /*bnz*/
+      if (regs[n1] != 0) pc = m2;
       break;
     default:
       printf("Error: Instruction %X not found!", instruction);
