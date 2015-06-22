@@ -9,7 +9,7 @@ unsigned memory[0xFFF];
 unsigned int prog[PROG_LENGTH];
 
 /* Program Counter */
-int pc = 0;
+int pc = 1;
 
 int comment = 0;
 
@@ -126,7 +126,7 @@ void eval(){
 }
 
 int fetch(){
-  return prog[pc++];
+  return prog[pc++ - 1];
 }
 
 void showRegs(){
