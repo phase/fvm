@@ -54,6 +54,7 @@ case 3: /*gto*/
 * `reg` : Register : 1 bit
 * `num` : Number : 2 bits
 * `mem` : Memory Address : 3 bits
+* `prg` : Step nunmber in the program : 3 bits
 
 Number (in hex)| Syntax | Hex Example | Description
 -------|--------|-------------|------------
@@ -78,4 +79,4 @@ F | `str <reg> <mem>`         | 0F3FFE | Store the value in the register in the 
 12 | `prt <reg>`              | 12A000 | Prints numeric value of the register
 13 | `prc <reg>`              | 13A000 | Prints char value of the register
 14 | `trn <reg> <reg>`        | 14AB00 | Transfers the value of the first register to the second register
-15 | `bie <reg> <num>`        | 15AFF0 | Branch if the number in the register is equal to the number
+15 | `bnz <reg> <num>`        | 15A001 | Branch if the number in the register is not equal to zero
