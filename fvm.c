@@ -139,7 +139,7 @@ void showRegs(){
 
 void run(){
   while(running){
-    showRegs();
+    /*showRegs();*/
     int i = fetch();
     decode(i);
     eval();
@@ -176,7 +176,7 @@ int main(int argc, const char *argv[]){
 
   int l;
   for(l = 0; l < PROG_LENGTH; l++){
-    printf("%X\n", prog[l]);
+    /*printf("%X\n", prog[l]);*/
     if(prog[l] == 0) break;
   }
   printf("\n");
