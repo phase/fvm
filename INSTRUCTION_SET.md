@@ -81,3 +81,5 @@ F | `str <reg> <mem>`         | 0F3FFE | Store the value in the register in the 
 14 | `trn <reg> <reg>`        | 14AB00 | Transfers the value of the first register to the second register
 15 | `bnz <reg> <num>`        | 15A001 | Branch if the number in the register is not equal to zero
 16 | `biz <reg> <num>`        | 16A001 | Branch if the number in the register is equal to zero
+17 | `neg <reg> <reg>`        | 17AB00 | Negate the number in the first register and store it in the second register
+18 | `btc <reg> <reg>`        | 18AB00 | Two's Complement the number inthe first register and store it in the second register
