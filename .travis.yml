@@ -1,3 +1,5 @@
--language: C
--compiler: gcc
--script: make
+language: C
+compiler: gcc
+script: make
+notifications:
+  email: false
