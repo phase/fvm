@@ -3,7 +3,7 @@ compiler:
  - gcc
  - clang
 script:
- - make
+ - make clean all
  - ./fvm examples/hex/math.pot
  - ./fvm examples/hex/test.pot
 notifications:
