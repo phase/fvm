@@ -6,5 +6,4 @@
 124000 ; Print register 4
 122000 ; Print register 2
 0A2440 ; OR register 2 and register 4 and store it in register 4
-154005 ; If register 4 is not zero, branch to line 5
 124000 ; Print register 4
