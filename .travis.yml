@@ -1,10 +1,10 @@
 language: C
 compiler:
- - gcc
- - clang
+  - clang
+  - gcc
 script:
- - make clean all
- - ./fvm examples/hex/math.pot
- - ./fvm examples/hex/test.pot
+  - make clean all
+  - ./fvm examples/hex/math.pot
+  - ./fvm examples/hex/test.pot
 notifications:
   email: false
