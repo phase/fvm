@@ -1,5 +1,12 @@
 language: C
-compiler: gcc
-script: make
+compiler:
+ - gcc
+ - clang
+before_script:
+ - chmod +x examples/runExamples.sh
+script:
+ - make
+ - ./fvm examples/hex/math.pot
+ - ./fvm examples/hex/test.pot
 notifications:
   email: false
