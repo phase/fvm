@@ -1,32 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "opcodes.h"
 
-#define NUM_REGS 16
 #define PROG_LENGTH 4096
-unsigned regs[NUM_REGS];
-unsigned memory[0xFFF];
+
 unsigned int prog[PROG_LENGTH];
 
-/* Program Counter */
-int pc = 1;
-
 int comment = 0;
-
-/* Fields */
-int instruction = 0;
-int n1 = 0;
-int n2 = 0;
-int n3 = 0;
-int n4 = 0;
-int l2 = 0;
-int l3 = 0;
-int l4 = 0;
-int t1 = 0;
-int t2 = 0;
-int w = 0;
-int m1 = 0;
-int m2 = 0;
 
 /* Gets all the information out of the instruction */
 void decode(int in){
@@ -45,90 +26,13 @@ void decode(int in){
   m2 = (in & 0xFFF);
 }
 
-/* Is the VM running? */
-int running = 0;
-
 void eval(){
-  switch(instruction){
-    case 0: /*stp*/
-      running = 0;
-      break;
-    case 1: /*ldi*/
-      regs[n1] = l3;
-      break;
-    case 2: /*rst*/
-      regs[n1] = 0;
-      break;
-    case 3: /*gto*/
-      pc = l4;
-      break;
-    case 4: /*add*/
-      regs[n3] = regs[n1] + regs[n2];
-      break;
-    case 5: /*sub*/
-      regs[n3] = regs[n1] - regs[n2];
-      break;
-    case 6: /*mul*/
-      regs[n3] = regs[n1] * regs[n2];
-      break;
-    case 7: /*div*/
-      regs[n3] = regs[n1] / regs[n2];
-      break;
-    case 8: /*mod*/
-      regs[n3] = regs[n1] % regs[n2];
-      break;
-    case 9: /*and*/
-      regs[n3] = regs[n1] & regs[n2];
-      break;
-    case 10: /*or*/
-      regs[n3] = regs[n1] | regs[n2];
-      break;
-    case 11: /*xor*/
-      regs[n3] = regs[n1] ^ regs[n2];
-      break;
-    case 12: /*not*/
-      regs[n2] = !regs[n1];
-      break;
-    case 13: /*shl*/
-      regs[n3] = regs[n1] << regs[n2];
-      break;
-    case 14: /*shr*/
-      regs[n3] = regs[n1] >> regs[n2];
-      break;
-    case 15: /*str*/
-      memory[t1] = regs[n1];
-      break;
-    case 16: /*get*/
-      regs[n3] = memory[t2];
-      break;
-    case 17: /*red*/
-      scanf("%d", &regs[n1]);
-      break;
-    case 18: /*prt*/
-      printf("%d", regs[n1]);
-      break;
-    case 19: /*prc*/
-      printf("%c", regs[n1]);
-      break;
-    case 20: /*trn*/
-      regs[n2] = regs[n1];
-      break;
-    case 21: /*bnz*/
-      if (regs[n1] != 0) pc = m2;
-      break;
-    case 22: /*biz*/
-      if (regs[n1] == 0) pc = m2;
-      break;
-    case 23: /*neg*/
-      regs[n2] = -regs[n1];
-      break;
-    case 24: /*btc*/
-      regs[n2] = ~regs[n1];
-      break;
-    default:
-      printf("Error: Instruction %X not found!", instruction);
-      exit(EXIT_FAILURE);
-  }
+    if (instruction > -1 && instruction < 25) {
+        operations[instruction]();
+    }
+    else {
+        error();
+    }
 }
 
 int fetch(){
