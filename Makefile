@@ -1,5 +1,7 @@
 CFLAGS=-I.
 
+SRC=$(wildcard *.c)
+
 %.o: %.c
 	$(CC) -c -o $@ $< $(CFLAGS)
 
