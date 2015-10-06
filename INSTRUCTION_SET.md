@@ -39,8 +39,9 @@ Each hex instruction has different variables for different parts of it.
 ```
 These variables are used within the evaluation of each instruction.
 ```c   
-case 3: /*gto*/
-  pc = l4;
+void gto() {
+    pc = l4;
+}
 ```
 
 ##FVM Bytecode
