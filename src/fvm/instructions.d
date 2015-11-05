@@ -24,7 +24,16 @@ void readInstructions(ubyte[] ins) {
             while(ins[++i] != 0) data ~= ins[i]; ///read string
             new Register(register.idup, data);
         }
-        else if(j == 10) { ///print <reg>
+        else if(j == 2) { ///loadf <reg> <##>
+            if(ins.length < i + 2)
+                throw new Exception("LoadError: Malformed bytecode @ " ~ to!string(i) ~ "/" ~ to!string(ins.length));
+            char[] register;
+            while(ins[++i] != 0) register ~= ins[i]; ///read string
+            char[] data;
+            while(ins[++i] != 0) data ~= ins[i]; ///read string
+            new Register(register.idup, to!float(data));
+        }
+        else if(j == 10) { ///printc <reg>
             if(ins.length < i + 1)
                 throw new Exception("PrintError: Malformed bytecode @ " ~ to!string(i));
             char[] register;
@@ -32,9 +41,27 @@ void readInstructions(ubyte[] ins) {
             Register reg = Register.getRegister(register.idup);
             switch(reg.getType()) {
                 case Register.Type.NUMBER:
-                    write(cast(char)reg.getValue());
+                    write(cast(char)reg.getNumberValue());
                 case Register.Type.ARRAY:
                     write(cast(char[]) reg.getValues());
+                case Register.Type.FLOAT:
+                    throw new Exception("TypeError: Register of type Float cannot be printed as a character");
+                default: break;
+            }
+        }
+        else if(j == 11) { ///printn <reg>
+            if(ins.length < i + 1)
+                throw new Exception("PrintError: Malformed bytecode @ " ~ to!string(i));
+            char[] register;
+            while(ins[++i] != 0) register ~= ins[i]; ///read string
+            Register reg = Register.getRegister(register.idup);
+            switch(reg.getType()) {
+                case Register.Type.NUMBER:
+                    write(to!string(reg.getNumberValue()));
+                case Register.Type.ARRAY:
+                    write(to!string(reg.getValues()));
+                case Register.Type.FLOAT:
+                    write(to!string(reg.getFloatValue()));
                 default: break;
             }
         }

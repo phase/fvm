@@ -4,13 +4,14 @@ import std.algorithm;
 
 class Register {
     enum Type : string {
-        NUMBER = "Number", ARRAY = "Array"
+        NUMBER = "Number", ARRAY = "Array", FLOAT = "Float"
     }
     
     static Register[] registers;
     string id;
     Type type;
-    long value = 0;
+    long nvalue = 0;
+    float fvalue = 0;
     ubyte[] values;
     
     this(string id, ubyte[] values) {
@@ -22,12 +23,19 @@ class Register {
         registers ~= this;
     }
     
-    this(string id, long value) {
+    this(string id, long nvalue) {
        /* if(registerExists(id))
             throw new Exception("RegisterError: Register with id " ~ id ~ " already exists");*/
         this.id = id;
-        this.value = value;
+        this.nvalue = nvalue;
         this.type = Type.NUMBER;
+        registers ~= this;
+    }
+    
+    this(string id, float f) {
+        this.id = id;
+        this.fvalue = f;
+        this.type = Type.FLOAT;
         registers ~= this;
     }
     
@@ -39,10 +47,16 @@ class Register {
         return type;
     }
     
-    long getValue() {
+    long getNumberValue() {
         if(type != Type.NUMBER)
             throw new Exception("RegisterTypeError: Tried to get number value from a register with type " ~ type);
-        return value;
+        return nvalue;
+    }
+    
+    float getFloatValue() {
+        if(type != Type.FLOAT)
+            throw new Exception("RegisterTypeError: Tried to get number value from a register with type " ~ type);
+        return fvalue;
     }
     
     ubyte[] getValues() {
