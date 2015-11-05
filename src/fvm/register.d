@@ -14,6 +14,8 @@ class Register {
     int[] values;
     
     this(ubyte id, int[] values) {
+       /* if(registerExists(id))
+            throw new Exception("RegisterError: Register with id " ~ id ~ " already exists");*/
         this.id = id;
         this.values = values;
         this.type = Type.ARRAY;
@@ -21,6 +23,8 @@ class Register {
     }
     
     this(ubyte id, long value) {
+       /* if(registerExists(id))
+            throw new Exception("RegisterError: Register with id " ~ id ~ " already exists");*/
         this.id = id;
         this.value = value;
         this.type = Type.NUMBER;
@@ -64,5 +68,9 @@ class Register {
             throw new Exception("DeallocRegisterError: Register with id " ~ to!string(id) ~ " does not exist");
         auto index = countUntil(registers, reg);
         registers = remove(registers, index);
+    }
+    
+    bool registerExists(ubyte id) {
+        return getRegister(id) !is null;
     }
 }
