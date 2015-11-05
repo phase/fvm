@@ -1,5 +1,5 @@
 module fvm.register;
-import std.conv;
+import fvm.std;
 
 class Register {
     static Register[] registers;
@@ -29,14 +29,14 @@ class Register {
         return "Register[" ~ to!string(id) ~ "]: " ~ to!string(value);
     }
     
-    static getRegister(ubyte id) {
+    static Register getRegister(ubyte id) {
         foreach(register; registers)
             if(register.getId() == id)
                 return register;
         return new Register(id);
     }
     
-    static getValue(ubyte id) {
-        getRegister(id).getValue();
+    static long getValue(ubyte id) {
+        return getRegister(id).getValue();
     }
 }
