@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-hc_help() {
+fvm_help() {
     echo "FVM Script Help"
     echo "- fvm.sh build"
-    echo "      Build Hypercube"
+    echo "      Build FVM"
 }
 
 fvm_build() {
