@@ -10,26 +10,26 @@ void readInstructions(ubyte[] ins) {
         if(j == 0) { ///loadi <reg> <#>
             if(ins.length < i + 2) ///if the program doesn't have enough arguments for the instruction
                 throw new Exception("LoadError: Malformed bytecode @ " ~ to!string(i) ~ "/" ~ to!string(ins.length));
-            ubyte register = ins[++i];
+            char[] register;
+            while(ins[++i] != 0) register ~= ins[i]; ///read string
             long value = cast(long) ins[++i];
-            new Register(register, value);
+            new Register(register.idup, value);
         }
         else if(j == 1) { ///loada <reg> <#...
             if(ins.length < i + 2)
                 throw new Exception("LoadError: Malformed bytecode @ " ~ to!string(i) ~ "/" ~ to!string(ins.length));
-            ubyte register = ins[++i];
+            char[] register;
+            while(ins[++i] != 0) register ~= ins[i]; ///read string
             ubyte[] data;
-            while(ins[++i] != 0) {//null byte is string delimiter
-                //writeln("  byte read: " ~ to!string(ins[i]) ~ " : " ~ to!string(i) ~ "/" ~ to!string(ins.length-1));
-                data ~= ins[i];
-            }
-            new Register(register, data);
+            while(ins[++i] != 0) data ~= ins[i]; ///read string
+            new Register(register.idup, data);
         }
         else if(j == 10) { ///print <reg>
             if(ins.length < i + 1)
                 throw new Exception("PrintError: Malformed bytecode @ " ~ to!string(i));
-            ubyte register = ins[++i];
-            Register reg = Register.getRegister(register);
+            char[] register;
+            while(ins[++i] != 0) register ~= ins[i]; ///read string
+            Register reg = Register.getRegister(register.idup);
             switch(reg.getType()) {
                 case Register.Type.NUMBER:
                     write(cast(char)reg.getValue());

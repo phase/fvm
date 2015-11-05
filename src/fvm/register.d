@@ -8,12 +8,12 @@ class Register {
     }
     
     static Register[] registers;
-    ubyte id;
+    string id;
     Type type;
     long value = 0;
     ubyte[] values;
     
-    this(ubyte id, ubyte[] values) {
+    this(string id, ubyte[] values) {
        /* if(registerExists(id))
             throw new Exception("RegisterError: Register with id " ~ id ~ " already exists");*/
         this.id = id;
@@ -22,7 +22,7 @@ class Register {
         registers ~= this;
     }
     
-    this(ubyte id, long value) {
+    this(string id, long value) {
        /* if(registerExists(id))
             throw new Exception("RegisterError: Register with id " ~ id ~ " already exists");*/
         this.id = id;
@@ -31,7 +31,7 @@ class Register {
         registers ~= this;
     }
     
-    ubyte getId() {
+    string getId() {
         return id;
     }
     
@@ -52,17 +52,17 @@ class Register {
     }
     
     override string toString() {
-        return type ~ "Register[" ~ to!string(id) ~ "]";
+        return type ~ "Register[" ~ id ~ "]";
     }
     
-    static Register getRegister(ubyte id) {
+    static Register getRegister(string id) {
         foreach(register; registers)
             if(register.getId() == id)
                 return register;
         return new Register(id, 0);
     }
     
-    static void deallocateRegister(ubyte id) {
+    static void deallocateRegister(string id) {
         Register reg = getRegister(id);
         if(reg is null)
             throw new Exception("DeallocRegisterError: Register with id " ~ to!string(id) ~ " does not exist");
@@ -70,7 +70,7 @@ class Register {
         registers = remove(registers, index);
     }
     
-    bool registerExists(ubyte id) {
+    bool registerExists(string id) {
         return getRegister(id) !is null;
     }
 }
