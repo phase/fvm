@@ -11,9 +11,9 @@ class Register {
     ubyte id;
     Type type;
     long value = 0;
-    int[] values;
+    ubyte[] values;
     
-    this(ubyte id, int[] values) {
+    this(ubyte id, ubyte[] values) {
        /* if(registerExists(id))
             throw new Exception("RegisterError: Register with id " ~ id ~ " already exists");*/
         this.id = id;
@@ -45,7 +45,7 @@ class Register {
         return value;
     }
     
-    int[] getValues() {
+    ubyte[] getValues() {
         if(type != Type.ARRAY)
             throw new Exception("RegisterTypeError: Tried to get array value from a register with type " ~ type);
         return values;

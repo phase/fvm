@@ -18,10 +18,10 @@ void readInstructions(ubyte[] ins) {
             if(ins.length < i + 2)
                 throw new Exception("LoadError: Malformed bytecode @ " ~ to!string(i) ~ "/" ~ to!string(ins.length));
             ubyte register = ins[++i];
-            int[] data;
+            ubyte[] data;
             while(ins[++i] != 0) {//null byte is string delimiter
                 //writeln("  byte read: " ~ to!string(ins[i]) ~ " : " ~ to!string(i) ~ "/" ~ to!string(ins.length-1));
-                data ~= cast(int)ins[i];
+                data ~= ins[i];
             }
             new Register(register, data);
         }
@@ -34,7 +34,7 @@ void readInstructions(ubyte[] ins) {
                 case Register.Type.NUMBER:
                     write(cast(char)reg.getValue());
                 case Register.Type.ARRAY:
-                    write(cast(char[])reg.getValues());
+                    write(cast(char[]) reg.getValues());
                 default: break;
             }
         }
