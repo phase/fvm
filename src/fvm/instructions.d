@@ -41,11 +41,12 @@ void readInstructions(ubyte[] ins) {
             Register reg = Register.getRegister(register.idup);
             switch(reg.getType()) {
                 case Register.Type.NUMBER:
-                    write(cast(char)reg.getNumberValue());
+                    write(cast(char)reg.getNumberValue()); break;
                 case Register.Type.ARRAY:
-                    write(cast(char[]) reg.getValues());
+                    write(cast(char[]) reg.getValues()); break;
                 case Register.Type.FLOAT:
                     throw new Exception("TypeError: Register of type Float cannot be printed as a character");
+                    break;
                 default: break;
             }
         }
@@ -57,13 +58,19 @@ void readInstructions(ubyte[] ins) {
             Register reg = Register.getRegister(register.idup);
             switch(reg.getType()) {
                 case Register.Type.NUMBER:
-                    write(to!string(reg.getNumberValue()));
+                    write(to!string(reg.getNumberValue())); break;
                 case Register.Type.ARRAY:
-                    write(to!string(reg.getValues()));
+                    write(to!string(reg.getValues())); break;
                 case Register.Type.FLOAT:
-                    write(to!string(reg.getFloatValue()));
+                    write(to!string(reg.getFloatValue())); break;
                 default: break;
             }
+        }
+        else if(j == 12) { ///input <reg>
+            char[] register;
+            while(ins[++i] != 0) register ~= ins[i]; ///read string
+            ubyte[] input = cast(ubyte[])(readln().dup);
+            new Register(register.idup, input);
         }
         else {
             throw new Exception("ParseError: Malformed bytecode @ " ~ to!string(i));
