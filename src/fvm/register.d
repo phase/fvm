@@ -1,5 +1,8 @@
 module fvm.register;
-import fvm.std;
+import std.stdio;
+import std.file;
+import std.conv;
+import std.string;
 import std.algorithm;
 
 class Register {
@@ -7,7 +10,6 @@ class Register {
         NUMBER = "Number", ARRAY = "Array", FLOAT = "Float"
     }
     
-    static Register[] registers;
     string id;
     Type type;
     long nvalue = 0;
@@ -20,7 +22,6 @@ class Register {
         this.id = id;
         this.values = values;
         this.type = Type.ARRAY;
-        registers ~= this;
     }
     
     this(string id, long nvalue) {
@@ -29,14 +30,12 @@ class Register {
         this.id = id;
         this.nvalue = nvalue;
         this.type = Type.NUMBER;
-        registers ~= this;
     }
     
     this(string id, float f) {
         this.id = id;
         this.fvalue = f;
         this.type = Type.FLOAT;
-        registers ~= this;
     }
     
     string getId() {
@@ -67,24 +66,5 @@ class Register {
     
     override string toString() {
         return type ~ "Register[" ~ id ~ "]";
-    }
-    
-    static Register getRegister(string id) {
-        foreach(register; registers)
-            if(register.getId() == id)
-                return register;
-        return new Register(id, 0);
-    }
-    
-    static void deallocateRegister(string id) {
-        Register reg = getRegister(id);
-        if(reg is null)
-            throw new Exception("DeallocRegisterError: Register with id " ~ to!string(id) ~ " does not exist");
-        auto index = countUntil(registers, reg);
-        registers = remove(registers, index);
-    }
-    
-    bool registerExists(string id) {
-        return getRegister(id) !is null;
     }
 }

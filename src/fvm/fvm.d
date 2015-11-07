@@ -1,7 +1,11 @@
 module fvm.fvm;
 import fvm.register;
 import fvm.instructions;
-import fvm.std;
+import fvm.routine;
+import std.stdio;
+import std.file;
+import std.conv;
+import std.string;
 
 int main(char[][] args) {
     if(args.length < 1) {
@@ -10,6 +14,7 @@ int main(char[][] args) {
     }
     string fileName = args[1].idup;
     ubyte[] instructions = cast(ubyte[])read(fileName);
-    readInstructions(instructions);
+    parseRoutines(instructions);
+    Routine.getRoutine("main").run();
     return 0;
 }

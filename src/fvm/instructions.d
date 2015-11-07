@@ -1,6 +1,10 @@
 module fvm.instructions;
 import fvm.register;
-import fvm.std;
+import fvm.routine;
+import std.stdio;
+import std.file;
+import std.conv;
+import std.string;
 
 void readInstructions(ubyte[] ins) {
     for(int i = 0; i < ins.length; i++) {
@@ -13,7 +17,7 @@ void readInstructions(ubyte[] ins) {
             char[] register;
             while(ins[++i] != 0) register ~= ins[i]; ///read string
             long value = cast(long) ins[++i];
-            new Register(register.idup, value);
+            Routine.addRegisterToCurrentRoutine(new Register(register.idup, value));
         }
         else if(j == 1) { ///loada <reg> <#...
             if(ins.length < i + 2)
@@ -22,7 +26,7 @@ void readInstructions(ubyte[] ins) {
             while(ins[++i] != 0) register ~= ins[i]; ///read string
             ubyte[] data;
             while(ins[++i] != 0) data ~= ins[i]; ///read string
-            new Register(register.idup, data);
+            Routine.addRegisterToCurrentRoutine(new Register(register.idup, data));
         }
         else if(j == 2) { ///loadf <reg> <##>
             if(ins.length < i + 2)
@@ -31,14 +35,14 @@ void readInstructions(ubyte[] ins) {
             while(ins[++i] != 0) register ~= ins[i]; ///read string
             char[] data;
             while(ins[++i] != 0) data ~= ins[i]; ///read string
-            new Register(register.idup, to!float(data));
+            Routine.addRegisterToCurrentRoutine(new Register(register.idup, to!float(data)));
         }
         else if(j == 10) { ///printc <reg>
             if(ins.length < i + 1)
                 throw new Exception("PrintError: Malformed bytecode @ " ~ to!string(i));
             char[] register;
             while(ins[++i] != 0) register ~= ins[i]; ///read string
-            Register reg = Register.getRegister(register.idup);
+            Register reg = Routine.getRegister(register.idup);
             switch(reg.getType()) {
                 case Register.Type.NUMBER:
                     write(cast(char)reg.getNumberValue()); break;
@@ -55,7 +59,7 @@ void readInstructions(ubyte[] ins) {
                 throw new Exception("PrintError: Malformed bytecode @ " ~ to!string(i));
             char[] register;
             while(ins[++i] != 0) register ~= ins[i]; ///read string
-            Register reg = Register.getRegister(register.idup);
+            Register reg = Routine.getRegister(register.idup);
             switch(reg.getType()) {
                 case Register.Type.NUMBER:
                     write(to!string(reg.getNumberValue())); break;
@@ -70,7 +74,7 @@ void readInstructions(ubyte[] ins) {
             char[] register;
             while(ins[++i] != 0) register ~= ins[i]; ///read string
             ubyte[] input = cast(ubyte[])(readln().dup);
-            new Register(register.idup, input);
+            Routine.addRegisterToCurrentRoutine(new Register(register.idup, input));
         }
         else {
             throw new Exception("ParseError: Malformed bytecode @ " ~ to!string(i));
