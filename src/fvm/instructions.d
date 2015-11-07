@@ -76,6 +76,11 @@ void readInstructions(ubyte[] ins) {
             ubyte[] input = cast(ubyte[])(readln().dup);
             Routine.addRegisterToCurrentRoutine(new Register(register.idup, input));
         }
+        else if(j == 13) { ///call <routine>
+            char[] routineName;
+            while(ins[++i] != 0) routineName ~= ins[i]; ///read string
+            Routine.getRoutine(routineName.idup).run();
+        }
         else {
             throw new Exception("ParseError: Malformed bytecode @ " ~ to!string(i));
         }
