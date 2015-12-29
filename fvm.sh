@@ -2,7 +2,7 @@
 
 fvm_help() {
     echo "FVM Script Help"
-    echo "- fvm.sh build"
+    echo " ./fvm.sh build"
     echo "      Build FVM"
 }
 

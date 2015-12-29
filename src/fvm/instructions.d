@@ -10,8 +10,8 @@ void readInstructions(ubyte[] ins) {
     for(int i = 0; i < ins.length; i++) {
         ubyte j = ins[i];
         //writeln("instruction: " ~ to!string(j) ~ " : " ~ to!string(i) ~ "/" ~ to!string(ins.length));
-        //commands
-        if(j == 0) { ///loadi <reg> <#>
+        // opcodes
+        if(j == 0x00) { ///loadi <reg> <#>
             if(ins.length < i + 2) ///if the program doesn't have enough arguments for the instruction
                 throw new Exception("LoadError: Malformed bytecode @ " ~ to!string(i) ~ "/" ~ to!string(ins.length));
             char[] register;
@@ -19,7 +19,7 @@ void readInstructions(ubyte[] ins) {
             long value = cast(long) ins[++i];
             Routine.addRegisterToCurrentRoutine(new Register(register.idup, value));
         }
-        else if(j == 1) { ///loada <reg> <#...
+        else if(j == 0x01) { ///loads <reg> <#...
             if(ins.length < i + 2)
                 throw new Exception("LoadError: Malformed bytecode @ " ~ to!string(i) ~ "/" ~ to!string(ins.length));
             char[] register;
@@ -28,7 +28,7 @@ void readInstructions(ubyte[] ins) {
             while(ins[++i] != 0) data ~= ins[i]; ///read string
             Routine.addRegisterToCurrentRoutine(new Register(register.idup, data));
         }
-        else if(j == 2) { ///loadf <reg> <##>
+        else if(j == 0x02) { ///loadf <reg> <##>
             if(ins.length < i + 2)
                 throw new Exception("LoadError: Malformed bytecode @ " ~ to!string(i) ~ "/" ~ to!string(ins.length));
             char[] register;
@@ -37,7 +37,7 @@ void readInstructions(ubyte[] ins) {
             while(ins[++i] != 0) data ~= ins[i]; ///read string
             Routine.addRegisterToCurrentRoutine(new Register(register.idup, to!float(data)));
         }
-        else if(j == 10) { ///printc <reg>
+        else if(j == 0x0a) { ///printc <reg>
             if(ins.length < i + 1)
                 throw new Exception("PrintError: Malformed bytecode @ " ~ to!string(i));
             char[] register;
@@ -54,7 +54,7 @@ void readInstructions(ubyte[] ins) {
                 default: break;
             }
         }
-        else if(j == 11) { ///printn <reg>
+        else if(j == 0x0b) { ///printn <reg>
             if(ins.length < i + 1)
                 throw new Exception("PrintError: Malformed bytecode @ " ~ to!string(i));
             char[] register;
@@ -70,13 +70,13 @@ void readInstructions(ubyte[] ins) {
                 default: break;
             }
         }
-        else if(j == 12) { ///input <reg>
+        else if(j == 0x0c) { ///input <reg>
             char[] register;
             while(ins[++i] != 0) register ~= ins[i]; ///read string
             ubyte[] input = cast(ubyte[])(readln().dup);
             Routine.addRegisterToCurrentRoutine(new Register(register.idup, input));
         }
-        else if(j == 13) { ///call <routine>
+        else if(j == 0x0d) { ///call <routine>
             char[] routineName;
             while(ins[++i] != 0) routineName ~= ins[i]; ///read string
             Routine.getRoutine(routineName.idup).run();

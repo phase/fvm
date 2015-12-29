@@ -95,7 +95,7 @@ void parseRoutines(ubyte[] ins) {
         ubyte j = ins[i];
         if(j == 14) { //0x0E
             char[] routineName;
-            while(ins[++i] != 0) routineName ~= ins[i];
+            while(ins[++i] != 0) routineName ~= ins[i]; //read string
             ubyte[] instructions;
             while(i + 1 < ins.length && ins[++i] != 15) //0x0F
                 instructions ~= ins[i];
